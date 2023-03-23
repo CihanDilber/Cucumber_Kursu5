@@ -9,19 +9,16 @@ public class LeftNav extends Parent{
 
 
     // sol taraftaki menuler burada
-
     public LeftNav() {
-        PageFactory.initElements(GWD.getDriver(),this);
+        PageFactory.initElements(GWD.getDriver(), this);
     }
 
     @FindBy(xpath = "(//span[text()='Setup'])[1]")
     public WebElement setup;
-
-    @FindBy(xpath = "(//span[text()='Parameters'])[1]")
+    @FindBy(xpath = "//span[text()='Parameters']")
     public WebElement parameters;
-
     @FindBy(xpath = "(//span[text()='Countries'])[1]")
     public WebElement countries;
-
-
+    @FindBy(xpath = "//span[text()='Citizenships']")
+    public WebElement citizenships;
 }

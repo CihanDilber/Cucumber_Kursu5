@@ -41,4 +41,13 @@ public class DialogContent extends Parent{
     @FindBy(xpath="//ms-save-button[@class='ng-star-inserted']//button")
     public WebElement saveButton;
 
+    @FindBy(xpath="//div[contains(text(),'successfully')]")
+    public WebElement successMessage;
+
+    @FindBy(xpath="//ms-text-field[@formcontrolname='shortName']/input")
+    public WebElement shortName;
+
+    @FindBy(xpath="//div[contains(text(),'already exists')]")
+    public WebElement alreadyExist;
+
 }

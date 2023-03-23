@@ -11,49 +11,37 @@ import java.time.Duration;
 
 public class Parent {
 
-    WebDriverWait wait=new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(30));
-    public void sendKeysFunction(WebElement element, String text)
-    {
+        WebDriverWait wait = new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(30));
 
-        waitUntilVisible(element);  // gozukene kadar bekle
-        scrollToElement(element);  // scroll yap
-        element.clear();           // temizle
-        element.sendKeys(text);    // gonder
+        public void sendKeysFunction(WebElement element, String text) {
+            waitUntilVisible(element);
+            scrollToElement(element);
+            element.clear();
+            element.sendKeys(text);
+        }
+
+        public void clickFunction(WebElement element) {
+            waitUntilClickable(element);
+            scrollToElement(element);
+            element.click();
+        }
+
+        public void verifyContainsTextFunction(WebElement element, String value) {
+            wait.until(ExpectedConditions.textToBePresentInElement(element, value));
+            Assert.assertTrue(element.getText().toLowerCase().contains(value.toLowerCase()), "No such text");
+        }
+
+        public void scrollToElement(WebElement element) {
+            JavascriptExecutor js = (JavascriptExecutor) GWD.getDriver();
+            js.executeScript("arguments[0].scrollIntoView();", element);
+        }
+
+        public void waitUntilVisible(WebElement element) {
+            wait.until(ExpectedConditions.visibilityOf(element));
+        }
+
+        public void waitUntilClickable(WebElement element) {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+        }
     }
-
-    public  void clickFunction(WebElement element)
-    {
-
-        waitUntilClickable(element);
-        scrollToElement(element);
-        element.click();
-
-    }
-
-    public void verifyContainsTextFunction(WebElement element, String value)
-    {
-
-        wait.until(ExpectedConditions.textToBePresentInElement(element, value));
-
-        Assert.assertTrue(element.getText().toLowerCase().contains(value.toLowerCase()), "No such text");
-
-    }
-
-    public void scrollToElement(WebElement element)
-    {
-        JavascriptExecutor js=(JavascriptExecutor) GWD.getDriver();
-        js.executeScript("arguments[0].scrollIntoView();", element);
-
-    }
-
-    public void waitUntilVisible(WebElement element)
-    {
-        wait.until(ExpectedConditions.visibilityOf(element));
-
-    }
-
-    public void waitUntilClickable(WebElement element){
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-}
 
