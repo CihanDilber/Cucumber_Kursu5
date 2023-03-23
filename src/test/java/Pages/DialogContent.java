@@ -11,8 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 // POM : Page Object Model
-public class DialogContent {
-
+public class DialogContent extends Parent{
+    // kullanici ile dialogla veri alan bolumler
     public DialogContent() {
         PageFactory.initElements(GWD.getDriver(),this);
     }
@@ -26,36 +26,19 @@ public class DialogContent {
     @FindBy(css = "button[aria-label='LOGIN']")
     public WebElement loginButton;
 
+    @FindBy(css = "span[class='mat-tooltip-trigger logo-text']")
+    public WebElement txtTechnoStudy;
 
-    public void findAndClick(WebElement element){
-        //tıklatılabilir olana kadar bekle
-        //scroll olana kadar bekle
-        //elemente click
+    @FindBy(xpath="//ms-add-button[contains(@tooltip,'ADD')]//button")
+    public WebElement addButton;
 
-        WebDriverWait wait=new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+    @FindBy(xpath="//ms-text-field[@formcontrolname='name']/input")
+    public WebElement nameInput;
 
-        JavascriptExecutor js=(JavascriptExecutor) GWD.getDriver();
-        js.executeScript("arguments[0].scrollIntoView();", element);
+    @FindBy(xpath="//ms-text-field[@formcontrolname='code']/input")
+    public WebElement codeInput;
 
-        element.click();
-    }
-
-
-    public void findAndSend(WebElement element, String text){
-//        gözükene kadar bekle
-//        scroll olana kadra bekle
-//        içini temizle
-//        yazıyı gönder
-
-        WebDriverWait wait=new WebDriverWait(GWD.getDriver(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(element));
-
-        JavascriptExecutor js=(JavascriptExecutor) GWD.getDriver();
-        js.executeScript("arguments[0].scrollIntoView();", element);
-
-        element.clear();
-        element.sendKeys(text);
-    }
+    @FindBy(xpath="//ms-save-button[@class='ng-star-inserted']//button")
+    public WebElement saveButton;
 
 }
