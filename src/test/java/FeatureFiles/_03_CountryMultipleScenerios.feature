@@ -11,5 +11,5 @@ Feature: Country Multi Scenario
     Then Success message should be displayed
 
     Scenario: Create a country 2
-      When create a country name as "Cihan1111" code as "11223333"
+      When create a country name as "Cihan11111" code as "112233333"
       Then Success message should be displayed

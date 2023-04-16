@@ -2,7 +2,7 @@ package StepDefinitions;
 
 import Pages.DialogContent;
 import Utilities.GWD;
-import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Given;    // given yerine * yazarsan hepsini import etmis olur
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;

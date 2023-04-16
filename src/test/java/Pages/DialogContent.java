@@ -1,14 +1,12 @@
 package Pages;
 
 import Utilities.GWD;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 // POM : Page Object Model
 public class DialogContent extends Parent{
@@ -38,7 +36,7 @@ public class DialogContent extends Parent{
     @FindBy(xpath="//ms-text-field[@formcontrolname='code']/input")
     public WebElement codeInput;
 
-    @FindBy(xpath="//ms-save-button[@class='ng-star-inserted']//button")
+    @FindBy(xpath="//ms-save-button/button")
     public WebElement saveButton;
 
     @FindBy(xpath="//div[contains(text(),'successfully')]")
@@ -49,5 +47,55 @@ public class DialogContent extends Parent{
 
     @FindBy(xpath="//div[contains(text(),'already exists')]")
     public WebElement alreadyExist;
+
+    @FindBy(xpath="(//ms-text-field/input)[1]")
+    public WebElement searchInput;
+
+    @FindBy(xpath="//ms-search-button")
+    public WebElement searchButton;
+
+    @FindBy(xpath="(//ms-delete-button/button)[1]")
+    public WebElement deleteImageBtn;
+
+    @FindBy(xpath="//button[@type='submit']")
+    public WebElement deleteDialogBtn;
+
+    @FindBy(xpath="//ms-text-field[@formcontrolname='budgetAccountIntegrationCode']//input")
+    private WebElement integrationCode;
+
+    @FindBy(xpath="//ms-integer-field[@formcontrolname='priority']/input")
+    private WebElement priorityCode;
+
+    @FindBy(xpath="//mat-slide-toggle[@formcontrolname='active']")
+    private WebElement toggleBar;
+
+    public void deleteItem(String searchText){
+        sendKeysFunction(searchInput, searchText);
+        clickFunction(searchButton);
+        // beklet
+        // 1. StaleElement hatasi verdi : erken buldum tez kaybettim
+        // wait.until(ExpectedConditions.elementToBeClickable(searchButton));   bu tam isimizi gormuyor
+
+        //fuse-progress-bar/*    bu 0 olana kadar beklet
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//fuse-progress-bar/*"),0));
+        clickFunction(deleteImageBtn);
+        clickFunction(deleteDialogBtn);
+    }
+
+    public WebElement getWebElement(String strButton){
+
+        switch (strButton)
+        {
+            case "addButton" : return addButton;
+            case "saveButton" : return saveButton;
+            case "nameInput" : return nameInput;
+            case "codeInput" : return codeInput;
+            case "integrationCode" : return integrationCode;
+            case "priorityCode" : return priorityCode;
+            case "toggleBar" : return toggleBar;
+        }
+
+        return null;
+    }
 
 }

@@ -24,6 +24,6 @@
    B) POM.xml -> Project Object Model Ayarları
 
        Selenium
-       testNg
+       testNg                             // bunun verrsiyon ile en altta ki ayni olmali
        Cucumber
        Cucumber-TestNg birleştiren lib

@@ -3,28 +3,30 @@
 #Create işlemini doğrulayınız.
 #Daha sonra aynı bilgilerle tekrar Create yapılamadığını doğrulayınız.(negatif test)
 
+Feature: Citizenship Functionality
 
-Background:
-Given Navigate to Campus
-When Enter username and password and click button
-Then User should login successfully
-And Navigate to citizenship page
+  Background:  # before senaryo
+    Given Navigate to Campus
+    When Enter username and password and click login button
+    Then User should login succesfully
+    And Navigate to CitizenShip page
 
-Scenario Outline: Create citizenship
+  Scenario Outline: CitizenShip create
+    When User a CitizenShip name as "<name>" short name as "<short>"
+    Then Success message should be displayed
 
-When User create a Citizenship name as "<name>" and short name as "<short>"
-Then Success message should be displayed
+    When User a CitizenShip name as "<name>" short name as "<short>"
+    Then Already exist message should be displayed
 
-When User create a Citizenship name as "<name>" and short name as "<short>"
-Then Already exist message should be displayed
-
-#When User delete the "<name>" // TODO
-#Then Success message should be displayed
+    When User delete the "<name>"
+    Then Success message should be displayed
 
 
 Examples:
 | name | short |
-| NewCitizenship011 | New0101 |
-| NewCitizenship022 | New0202 |
-| NewCitizenship033 | New0303 |
-| NewCitizenship044 | New0404 |
+| NewCitizenship0111 | New01011 |
+| NewCitizenship0222 | New02022 |
+| NewCitizenship0333 | New03033 |
+| NewCitizenship0444 | New04044 |
+
+  # testNG dataProvider burada scenerio outline oluyor
