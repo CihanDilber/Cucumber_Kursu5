@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
 
 // POM : Page Object Model
 public class DialogContent extends Parent{
@@ -68,6 +70,9 @@ public class DialogContent extends Parent{
 
     @FindBy(xpath="//mat-slide-toggle[@formcontrolname='active']")
     private WebElement toggleBar;
+
+    @FindBy(xpath="//tr[contains(@class, 'mat-row')]/td[2]")
+    public List<WebElement> nameList;
 
     public void deleteItem(String searchText){
         sendKeysFunction(searchInput, searchText);
